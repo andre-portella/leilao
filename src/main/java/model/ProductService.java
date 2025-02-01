@@ -7,17 +7,13 @@ import database.ProductDao;
 public class ProductService {
     private ProductDao productDAO = new ProductDao();
     
-    public ArrayList<Product> listProducts() throws Exception{
-        // é possível inserir lógica de negócio aqui, para tratar os bens antes de retornálos-los ao controlador
-        
-        ArrayList<Product> products = productDAO.listProducts();
-        
-        if (products.isEmpty()) {
-            // Aqui você pode adicionar um comportamento, como lançar uma exceção
-            // ou apenas retornar uma lista vazia, dependendo do caso.
-            throw new Exception("Nenhum produto encontrado.");
+    public ArrayList<Product> listProducts(){
+        try {
+            ArrayList<Product> products =  productDAO.selectProducts();
+            return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-
-        return products;
     }
 }

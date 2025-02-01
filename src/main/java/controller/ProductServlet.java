@@ -16,7 +16,6 @@ import model.ProductService;
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
     private ProductService productService;  // Definir variável de instância
 
     public void init() {
@@ -25,17 +24,10 @@ public class ProductServlet extends HttpServlet {
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ArrayList<Product> products = new ArrayList<>();
-        
-        try {
-            products = productService.listProducts();
-        } catch (Exception e) {
-            // 
-        }
+        ArrayList<Product> products = productService.listProducts();
 
         request.setAttribute("products", products);
-        RequestDispatcher dispatcher=request.getRequestDispatcher("./products.jsp");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("./products.jsp").forward(request, response);
 	}
 
 }
