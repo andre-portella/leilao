@@ -24,13 +24,12 @@ public class ProductDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Product product = new Product(
-                    rs.getInt("product_id"),
-                    rs.getString("name"),
-                    rs.getBigDecimal("min_bid"),
-                    rs.getString("description"),
-                    rs.getString("image_url")
-                );
+                Product product = new Product();
+                product.setProductId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setMinBid(rs.getBigDecimal("min_bid"));
+                product.setDescription(rs.getString("description"));
+                product.setImageUrl(rs.getString("image_url"));
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -38,6 +37,42 @@ public class ProductDao {
         }
 
         return products;
+
+    }
+
+
+
+    public Product getProduct(int productId) throws ClassNotFoundException {
+
+        String GET_PRODUCT_SQL = "SELECT * FROM products WHERE id = ?";
+        try {
+            
+            Connection conn = ConnectionFactory.getConnection();
+
+            // executa query
+            PreparedStatement stmt = conn.prepareStatement(GET_PRODUCT_SQL);
+
+            stmt.setInt(1, productId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Product product = new Product();
+                product.setProductId(rs.getInt("product_id"));
+                product.setName(rs.getString("name"));
+                product.setMinBid(rs.getBigDecimal("min_bid"));
+                product.setDescription(rs.getString("description"));
+                product.setImageUrl(rs.getString("image_url"));
+
+                System.out.println("Produto encontrado: " + product);
+
+                return product;
+            }
+            return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
     }
     

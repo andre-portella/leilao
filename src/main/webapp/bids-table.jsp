@@ -1,8 +1,10 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Auction"%>
+<%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <% List<Auction> bids = (List<Auction>) request.getAttribute("bids"); %>
+<% Product product = (Product) request.getAttribute("product"); %>
 
 <% if (bids != null && !bids.isEmpty()) { %>
     <table border="1">
@@ -20,5 +22,5 @@
         <% } %>
     </table>
 <% } else { %>
-    <p>Nenhum lance realizado ainda.</p>
+    <p>Nenhum lance realizado ainda. O valor mínimo do produto é <%=product.getMinBid() %> </p>
 <% } %>

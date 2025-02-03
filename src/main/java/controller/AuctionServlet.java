@@ -14,15 +14,19 @@ import javax.servlet.http.HttpSession;
 
 import model.Auction;
 import model.AuctionService;
+import model.Product;
+import model.ProductService;
 import model.User;
 
 @WebServlet("/auction")
 public class AuctionServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AuctionService auctionService;
+    private ProductService productService;
 
     public void init() {
         auctionService = new AuctionService();
+        productService = new ProductService();
     }
 
 
@@ -33,7 +37,9 @@ public class AuctionServlet extends HttpServlet {
         List<Auction> bids = auctionService.getBidsByProductId(productId);
 
         request.setAttribute("bids", bids);
-        request.setAttribute("productId", productId);
+      
+        Product product = productService.getProductById(productId);
+        request.setAttribute("product", product);
 
         // Verifica se é uma requisição AJAX
         if ("true".equals(request.getParameter("isAjax"))) {
