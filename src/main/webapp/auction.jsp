@@ -1,35 +1,31 @@
 <%@page import="model.User"%>
-<%@page import="java.util.List"%>
-<%@page import="model.Auction"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     User user = (User) session.getAttribute("user");
-    List<Auction> bids = (List<Auction>) request.getAttribute("bids");
-
     Product product = (Product) request.getAttribute("product");
     double minBid = product.getMinBid().doubleValue(); 
-    double highestBid = (bids != null && !bids.isEmpty()) ? bids.get(0).getBidValue().doubleValue() : minBid;
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Leilão do Produto: <%=product.getName() %></title>
+    <title><%=product.getName() %></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script> var productId = <%= product.getProductId() %>;</script>
-    <script> var highestBid = <%= String.format(java.util.Locale.US, "%.2f", highestBid) %>;</script>
+    <script> var minBid = <%= String.format(java.util.Locale.US, "%.2f", product.getMinBid().doubleValue()) %>;</script>
     <script src="auction.js"></script>
 </head>
 <body>
     <a href="/leilao">Voltar</a>
-    <h1>Leilão do Produto</h1>
+    <h1>Leilão do Produto: <%=product.getName() %></h1>
 
     <!-- Formulário de lance -->
     <% if (user != null) { %>
         <h2>Faça seu lance</h2>
+        <p>O valor mínimo do produto é R$<%=product.getMinBid() %></p>
         <form>
             <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
             <label for="bid_value">Valor do Lance:</label>

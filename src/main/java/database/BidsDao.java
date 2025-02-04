@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Auction;
+import model.Bids;
 
-public class AuctionDao {
+public class BidsDao {
 
-    public List<Auction> getBidsByProductId(int productId) throws ClassNotFoundException {
+    public List<Bids> getBidsByProductId(int productId) throws ClassNotFoundException {
         String SELECT_BIDS_SQL = "SELECT * FROM bids WHERE product_id = ? ORDER BY bid_value DESC";
-        List<Auction> bids = new ArrayList<>();
+        List<Bids> bids = new ArrayList<>();
 
         try {
             Connection conn = ConnectionFactory.getConnection();
@@ -23,13 +23,14 @@ public class AuctionDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Auction bid = new Auction(
-                    rs.getInt("bid_id"),
-                    rs.getInt("product_id"),
-                    rs.getInt("user_id"),
-                    rs.getBigDecimal("bid_value"),
-                    rs.getTimestamp("bid_time")
-                );
+                Bids bid = new Bids();
+                
+                bid.setBidId(rs.getInt("bid_id"));
+                bid.setProductId(rs.getInt("product_id"));
+                bid.setUserId(rs.getInt("user_id"));
+                bid.setBidValue(rs.getBigDecimal("bid_value"));
+                bid.setBidTime(rs.getTimestamp("bid_time"));
+
                 bids.add(bid);
             }
         } catch (SQLException e) {
@@ -39,7 +40,7 @@ public class AuctionDao {
         return bids;
     }
 
-    public boolean insertBid(Auction bid) {
+    public boolean insertBid(Bids bid) {
         String INSERT_BID_SQL = "INSERT INTO bids (product_id, user_id, bid_value) VALUES (?, ?, ?)";
     
         try {

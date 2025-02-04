@@ -9,14 +9,6 @@ public class Product {
     private String description;
     private String imageUrl;
 
-    // public Product(int productId, String name, BigDecimal minBid, String description, String imageUrl){
-    //     this.productId = productId;
-    //     this.name = name;
-    //     this.minBid = minBid;
-    //     this.description = description;
-    //     this.imageUrl = imageUrl;
-    // }
-
     // Getters e Setters
     public int getProductId() {
         return productId;

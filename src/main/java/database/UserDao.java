@@ -1,7 +1,5 @@
 package database;
 
-
-import database.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,5 +34,34 @@ public class UserDao {
             e.printStackTrace();
             return null;
         }
-    }    
+    }
+    
+    public String getUsername(int userID) {
+
+        String GET_USERNAME_SQL = "SELECT * FROM users WHERE user_id = ?;";
+
+        try {
+            
+            Connection conn = ConnectionFactory.getConnection();
+
+            // executa query
+            PreparedStatement stmt = conn.prepareStatement(GET_USERNAME_SQL);
+
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+
+                return user.getUsername();
+            }
+            return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 } 

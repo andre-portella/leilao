@@ -3,20 +3,12 @@ package model;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class Auction {
+public class Bids {
     private int bidId;
     private int productId;
     private int userId;
     private BigDecimal bidValue;
     private Timestamp bidTime;
-
-    public Auction(int bidId, int productId, int userId, BigDecimal bidValue, Timestamp bidTime) {
-        this.bidId = bidId;
-        this.productId = productId;
-        this.userId = userId;
-        this.bidValue = bidValue;
-        this.bidTime = bidTime;
-    }
 
     // Getters e Setters
     public int getBidId() {

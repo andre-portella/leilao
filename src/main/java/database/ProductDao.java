@@ -44,7 +44,7 @@ public class ProductDao {
 
     public Product getProduct(int productId) throws ClassNotFoundException {
 
-        String GET_PRODUCT_SQL = "SELECT * FROM products WHERE id = ?";
+        String GET_PRODUCT_SQL = "SELECT * FROM products WHERE product_id = ?;";
         try {
             
             Connection conn = ConnectionFactory.getConnection();
@@ -62,8 +62,6 @@ public class ProductDao {
                 product.setMinBid(rs.getBigDecimal("min_bid"));
                 product.setDescription(rs.getString("description"));
                 product.setImageUrl(rs.getString("image_url"));
-
-                System.out.println("Produto encontrado: " + product);
 
                 return product;
             }

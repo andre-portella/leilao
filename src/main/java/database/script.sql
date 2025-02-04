@@ -58,3 +58,10 @@ INSERT INTO products (name, min_bid, description, image_url) VALUES
 ('Relógio Antigo de Ouro da Rolex', 2500.00, 'Relógio Rolex vintage de ouro, um verdadeiro tesouro para colecionadores de relógios.', 'https://example.com/images/rolex_vintage_watch.jpg'),
 ('Escultura de Ferro de Iron Man', 700.00, 'Escultura de ferro do Iron Man, feita à mão e pintada em alto relevo.', 'https://example.com/images/iron_man_sculpture.jpg'),
 ('Moeda de Ouro do Brasil Império', 1500.00, 'Moeda de ouro rara do Brasil Império, uma peça preciosa para numismatas.', 'https://example.com/images/brasil_império_coin.jpg');
+
+
+INSERT INTO users (username, password) VALUES
+('admin', 'admin'),
+('lzaina', 'web2024'),
+('bob', '1234'),
+('alice', '4321');
