@@ -14,8 +14,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><%=product.getName() %></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script> var productId = <%= product.getProductId() %>;</script>
-    <script> var minBid = <%= String.format(java.util.Locale.US, "%.2f", product.getMinBid().doubleValue()) %>;</script>
+    <script>
+        var productId = <%= product.getProductId() %>;
+        var minBid = <%= product.getMinBid().doubleValue() %>;
+    </script>
     <script src="auction.js"></script>
 </head>
 <body>
@@ -25,7 +27,7 @@
     <!-- Formulário de lance -->
     <% if (user != null) { %>
         <h2>Faça seu lance</h2>
-        <p>O valor mínimo do produto é R$<%=product.getMinBid() %></p>
+        <p>O valor mínimo do produto é R$ <%= String.format(java.util.Locale.US, "%.2f", minBid) %></p>
         <form method="post">
             <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
             <label for="bid_value">Valor do Lance:</label>

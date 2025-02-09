@@ -40,8 +40,13 @@ $(document).ready(function() {
             url: "auction",
             method: "POST",
             data: $(this).serialize(),
-            success: function() {
-                $("#bid-message").text("Lance aceito!").css("color", "green").fadeIn().delay(2000).fadeOut();
+            success: function(response) {
+                if (response.trim() === "success") {
+                    $("#bid-message").text("Lance aceito!").css("color", "green").fadeIn().delay(2000).fadeOut();
+                }
+            },
+            error: function(xhr) {
+                $("#bid-message").text(xhr.responseText || "Erro ao enviar lance.").css("color", "red").fadeIn().delay(2000).fadeOut();
             }
         });
     });
