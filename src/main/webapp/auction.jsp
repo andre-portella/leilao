@@ -26,10 +26,10 @@
     <% if (user != null) { %>
         <h2>Faça seu lance</h2>
         <p>O valor mínimo do produto é R$<%=product.getMinBid() %></p>
-        <form>
+        <form method="post">
             <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
             <label for="bid_value">Valor do Lance:</label>
-            <input type="number" name="bid_value" required>
+            <input type="number" name="bid_value" id="bid_value" required>
             <button type="submit">Enviar Lance</button>
             <span id="bid-message" style="display:none; margin-left: 10px;"></span>
         </form>

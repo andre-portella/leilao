@@ -53,9 +53,11 @@ public class AuctionServlet extends HttpServlet {
         request.setAttribute("usernames", usernames);
 
         // Verifica se é uma requisição AJAX
-        if ("true".equals(request.getParameter("isAjax"))) {
+        String requestedWith = request.getHeader("X-Requested-With");
+        if ("XMLHttpRequest".equals(requestedWith)) {
             request.getRequestDispatcher("/bids-table.jsp").forward(request, response);
-        } else {
+        }
+        else {
             request.getRequestDispatcher("auction.jsp").forward(request, response);
         }
     }
@@ -76,7 +78,6 @@ public class AuctionServlet extends HttpServlet {
 
         // Salva o lance no banco de dados
         Bids bid = new Bids();
-
         bid.setProductId(productId);
         bid.setUserId(user.getUserId());
         bid.setBidValue(bidValue);

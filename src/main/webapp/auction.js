@@ -2,30 +2,33 @@ $(document).ready(function() {
     // Função para atualizar a tabela de lances
     function updateBids() {
         $("form button").prop("disabled", true);
-        $("form input[name='bid_value']").prop("disabled", true);
+        $("#bid_value").prop("disabled", true);
 
         $.ajax({
-            url: "auction?product_id=" + productId + "&isAjax=true", // Parâmetro para identificar AJAX
+            url: "auction?product_id=" + productId, // Parâmetro para identificar AJAX
             method: "GET",
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Cabeçalho para indicar que é uma requisição AJAX
+            },
             success: function(data) {
                 $("#bids-list").html(data); // Atualiza a tabela
 
                 setTimeout(function() {
                     $("form button").prop("disabled", false);
-                    $("form input[name='bid_value']").prop("disabled", false);
+                    $("#bid_value").prop("disabled", false);
                 }, 2000);
             }
         });
     }
 
-    // Atualiza a tabela a cada 10 segundos
-    setInterval(updateBids, 10000);
+    // Atualiza a tabela a cada 30 segundos
+    setInterval(updateBids, 30000);
 
     // Envio do formulário via AJAX
     $("form").on("submit", function(event) {
         event.preventDefault(); // Impede o envio tradicional
 
-        let bidValue = parseFloat($("input[name='bid_value']").val());
+        let bidValue = parseFloat($("#bid_value").val());
 
         // Verifica se o valor do lance é válido
         if (isNaN(bidValue) || bidValue < parseFloat(minBid)) {
