@@ -7,7 +7,6 @@ public class Product {
     private String name;
     private BigDecimal minBid;
     private String description;
-    private String imageUrl;
 
     // Getters e Setters
     public int getProductId() {
@@ -42,11 +41,4 @@ public class Product {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

@@ -29,7 +29,6 @@ public class ProductDao {
                 product.setName(rs.getString("name"));
                 product.setMinBid(rs.getBigDecimal("min_bid"));
                 product.setDescription(rs.getString("description"));
-                product.setImageUrl(rs.getString("image_url"));
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -61,7 +60,6 @@ public class ProductDao {
                 product.setName(rs.getString("name"));
                 product.setMinBid(rs.getBigDecimal("min_bid"));
                 product.setDescription(rs.getString("description"));
-                product.setImageUrl(rs.getString("image_url"));
 
                 return product;
             }
