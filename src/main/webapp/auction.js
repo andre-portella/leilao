@@ -5,7 +5,7 @@ $(document).ready(function() {
         $("#bid_value").prop("disabled", true);
 
         $.ajax({
-            url: "auction?product_id=" + productId, // Parâmetro para identificar AJAX
+            url: "auction?product_id=" + productId,
             method: "GET",
             headers: {
                 'X-Requested-With': 'XMLHttpRequest' // Cabeçalho para indicar que é uma requisição AJAX
@@ -40,13 +40,13 @@ $(document).ready(function() {
             url: "auction",
             method: "POST",
             data: $(this).serialize(),
-            success: function(response) {
-                if (response.trim() === "success") {
+            success: function(response, status, xhr) {
+                if (xhr.status === 200) {
                     $("#bid-message").text("Lance aceito!").css("color", "green").fadeIn().delay(2000).fadeOut();
                 }
             },
-            error: function(xhr) {
-                $("#bid-message").text(xhr.responseText || "Erro ao enviar lance.").css("color", "red").fadeIn().delay(2000).fadeOut();
+            error: function(xhr, status, error) {
+                $("#bid-message").text("Erro ao enviar lance.").css("color", "red").fadeIn().delay(2000).fadeOut();
             }
         });
     });

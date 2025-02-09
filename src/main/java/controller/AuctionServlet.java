@@ -84,10 +84,6 @@ public class AuctionServlet extends HttpServlet {
 
         bidsService.placeBid(bid);
 
-
-        // Retorna resposta para o AJAX
-        response.setContentType("text/plain");
-        response.getWriter().write("success");
-
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 }
