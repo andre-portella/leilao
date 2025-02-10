@@ -68,11 +68,6 @@ public class AuctionServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
         int productId = Integer.parseInt(request.getParameter("product_id"));
         BigDecimal bidValue = new BigDecimal(request.getParameter("bid_value"));
 
