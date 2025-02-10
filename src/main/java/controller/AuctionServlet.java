@@ -82,13 +82,6 @@ public class AuctionServlet extends HttpServlet {
         bid.setUserId(user.getUserId());
         bid.setBidValue(bidValue);
 
-        boolean success = bidsService.placeBid(bid);
-
-        if (success) {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-        else {
-            response.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
-        }
+        bidsService.placeBid(bid);
     }
 }

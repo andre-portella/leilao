@@ -10,13 +10,16 @@ $(document).ready(function() {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest' // Cabeçalho para indicar que é uma requisição AJAX
             },
-            success: function(data) {
-                $("#bids-list").html(data); // Atualiza a tabela
+            success: function(response) {
+                $("#bids-list").html(response); // Atualiza a tabela
 
                 setTimeout(function() {
                     $("form button").prop("disabled", false);
                     $("#bid_value").prop("disabled", false);
                 }, 2000);
+            },
+            error: function(xhr, status, error) {
+               console.error("[ERRO]: ", error)
             }
         });
     }
@@ -40,10 +43,8 @@ $(document).ready(function() {
             url: "auction",
             method: "POST",
             data: $(this).serialize(),
-            success: function(response, status, xhr) {
-                if (xhr.status === 200) {
-                    $("#bid-message").text("Lance aceito!").css("color", "green").fadeIn().delay(2000).fadeOut();
-                }
+            success: function(response) {
+                $("#bid-message").text("Lance aceito!").css("color", "green").fadeIn().delay(2000).fadeOut();
             },
             error: function(xhr, status, error) {
                 $("#bid-message").text("[ERRO] lance não registrado.").css("color", "red").fadeIn().delay(2000).fadeOut();

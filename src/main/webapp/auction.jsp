@@ -28,7 +28,7 @@
     <% if (user != null) { %>
         <h2>Faça seu lance</h2>
         <p>O valor mínimo do produto é R$ <%= String.format(java.util.Locale.US, "%.2f", minBid) %></p>
-        <form method="post">
+        <form method="post" action="auction">
             <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
             <label for="bid_value">Valor do Lance:</label>
             <input type="number" name="bid_value" id="bid_value" required>
