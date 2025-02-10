@@ -62,3 +62,14 @@ INSERT INTO users (username, password) VALUES
 ('lzaina', 'web2024'),
 ('bob', '1234'),
 ('alice', '4321');
+
+
+-- script para popular a tabela lances:
+INSERT INTO bids (product_id, user_id, bid_value) VALUES
+(1, 2, 550.00),  -- Usuário lzaina dá um lance no Batman 1989
+(1, 3, 600.00),  -- Usuário bob supera o lance no Batman 1989
+(2, 4, 350.00),  -- Usuário alice dá um lance no Quadrinho X-Men #1
+(3, 3, 280.00),  -- Usuário bob dá um lance na Moeda Comemorativa da NASA
+(3, 2, 250.00),  -- Usuário lzaina dá um lance na Moeda Comemorativa da NASA
+(4, 3, 620.00),  -- Usuário bob dá um lance na Estatueta do Darth Vader
+(5, 4, 1100.00); -- Usuário alice dá um lance no Cartão Pokémon Charizard

@@ -32,7 +32,7 @@ $(document).ready(function() {
 
         // Verifica se o valor do lance é válido
         if (isNaN(bidValue) || bidValue < parseFloat(minBid)) {
-            $("#bid-message").text("Faça um lance acima de R$" + minBid.toFixed(2) + ".").css("color", "red").fadeIn().delay(2000).fadeOut();
+            $("#bid-message").text("Faça um lance acima de R$ " + minBid.toFixed(2) + ".").css("color", "red").fadeIn().delay(2000).fadeOut();
             return; // Impede o envio do formulário
         }
 

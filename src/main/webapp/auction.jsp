@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         var productId = <%= product.getProductId() %>;
-        var minBid = <%= product.getMinBid().doubleValue() %>;
+        var minBid = <%= minBid %>;
     </script>
     <script src="auction.js"></script>
 </head>
