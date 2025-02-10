@@ -46,7 +46,7 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, status, error) {
-                $("#bid-message").text("Erro ao enviar lance.").css("color", "red").fadeIn().delay(2000).fadeOut();
+                $("#bid-message").text("[ERRO] lance não registrado.").css("color", "red").fadeIn().delay(2000).fadeOut();
             }
         });
     });

@@ -7,7 +7,7 @@ CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
-);
+) ENGINE=InnoDB;
 
 -- Tabela de produtos (US01)
 CREATE TABLE products (
@@ -33,18 +33,16 @@ CREATE TABLE bids (
 );
 
 
-
 -- script para popular a tabela produto:
-
 INSERT INTO products (name, min_bid, description) VALUES
 ('Figura de Ação Batman 1989', 500.00, 'Figura rara do Batman do filme de 1989, em excelente estado de conservação.'),
 ('Quadrinho X-Men #1', 300.00, 'Primeira edição do famoso quadrinho X-Men, em ótimo estado.'),
 ('Moeda Comemorativa 50 anos da NASA', 200.00, 'Moeda rara comemorando os 50 anos da NASA, com detalhes gravados em alta qualidade.'),
 ('Estatueta Star Wars Darth Vader', 600.00, 'Estatueta premium do Darth Vader, com detalhes incríveis, edição limitada.'),
-('Cartão Pokémon Charizard', 1000.00, 'Cartão raro de Charizard, em condição de "mint", ideal para colecionadores.'),
+('Cartão Pokémon Charizard', 1000.00, 'Cartão raro de Charizard, em boas condições, ideal para colecionadores.'),
 ('Action Figure Iron Man 1ª Edição', 450.00, 'Action figure do Homem de Ferro, edição limitada de 1ª linha.'),
 ('Moeda de Ouro do Império Romano', 1200.00, 'Moeda de ouro do período do Império Romano, raridade histórica.'),
-('Pôster Original de Star Wars', 350.00, 'Pôster original de Star Wars de 1977, em excelente estado para o seu tempo.'),
+('Pôster Original de Star Wars', 350.00, 'Pôster original de Star Wars de 1977, em excelente estado de conservação.'),
 ('Figurinha Rara Michael Jordan', 700.00, 'Figurinha rara de Michael Jordan, considerada um ícone no mercado de colecionáveis esportivos.'),
 ('Boneco Funko Pop! de Harry Potter', 80.00, 'Boneco Funko Pop! de edição limitada do Harry Potter, item indispensável para fãs.'),
 ('Action Figure Godzilla', 350.00, 'Action figure de alta qualidade do Godzilla, edição limitada e extremamente detalhada.'),
@@ -58,7 +56,7 @@ INSERT INTO products (name, min_bid, description) VALUES
 ('Escultura de Ferro de Iron Man', 700.00, 'Escultura de ferro do Iron Man, feita à mão e pintada em alto relevo.'),
 ('Moeda de Ouro do Brasil Império', 1500.00, 'Moeda de ouro rara do Brasil Império, uma peça preciosa para numismatas.');
 
-
+-- script para popular a tabela usuários:
 INSERT INTO users (username, password) VALUES
 ('admin', 'admin'),
 ('lzaina', 'web2024'),

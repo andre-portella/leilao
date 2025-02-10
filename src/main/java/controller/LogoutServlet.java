@@ -22,7 +22,7 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate(); 
         }
 
-        // redireciona para a página de login
+        // redireciona para a página de produtos
         response.sendRedirect("products"); 
     }
 }
